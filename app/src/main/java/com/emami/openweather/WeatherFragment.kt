@@ -1,59 +1,63 @@
 package com.emami.openweather
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.android.synthetic.main.fragment_weather.*
+import kotlinx.coroutines.delay
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [WeatherFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class WeatherFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_weather, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment WeatherFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            WeatherFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        figureCurrentTimeState()
+    }
+
+    private fun figureCurrentTimeState() {
+        lifecycleScope.launchWhenResumed {
+            var i = 0
+            repeat(24) {
+//                val background = when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+                val background = when (i) {
+                    in 0..6 -> {
+                        ContextCompat.getDrawable(requireContext(), R.drawable.bg_dawn_gradient)
+                    }
+                    in 7..11 -> {
+                        ContextCompat.getDrawable(requireContext(), R.drawable.bg_morning_gradient)
+                    }
+                    in 12..15 -> {
+                        ContextCompat.getDrawable(requireContext(), R.drawable.bg_noon_gradient)
+                    }
+                    in 17..19 -> {
+                        ContextCompat.getDrawable(requireContext(), R.drawable.bg_evening_gradient)
+                    }
+                    in 20..23 -> {
+                        ContextCompat.getDrawable(requireContext(), R.drawable.bg_night_gradient)
+                    }
+                    else -> {
+                        ContextCompat.getDrawable(requireContext(), R.drawable.bg_morning_gradient)
+                    }
                 }
+                weatherFrameLayout.background = background
+                i++
+                delay(1000)
             }
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() =
+            WeatherFragment()
     }
 }
