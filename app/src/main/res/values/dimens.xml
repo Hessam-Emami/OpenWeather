@@ -17,4 +17,5 @@
     <dimen name="item_spinner_weather_drop_side_top_padding">8dp</dimen>
     <dimen name="item_recycler_weather_hour_image_size">32dp</dimen>
     <dimen name="item_recycler_weather_hour_end_margin">16dp</dimen>
+    <dimen name="item_daily_image_end_margin">32dp</dimen>
 </resources>

@@ -34,6 +34,8 @@ open class BaseRepository() {
         }
     }
 
+    //These messages should get read from string.xml and get injected into baseRepository, but
+    //i've added them here for now for the sake of simplicity
     private companion object {
         const val ERROR_TIMEOUT = "This takes longer than usual, please try again in a bit"
         const val ERROR_INTERNET = "Please check your internet and try again"
