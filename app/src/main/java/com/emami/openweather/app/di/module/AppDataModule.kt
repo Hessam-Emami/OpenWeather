@@ -1,6 +1,8 @@
 package com.emami.openweather.app.di.module
 
-//import com.emami.openweather.core.persistence.db.AppDatabase
+import androidx.lifecycle.ViewModelProvider
+import com.emami.openweather.app.di.factory.ViewModelFactory
+import dagger.Binds
 import dagger.Module
 
 /**
@@ -8,13 +10,6 @@ import dagger.Module
  */
 @Module
 abstract class AppDataModule {
-//
-//    @Singleton
-//    @Provides
-//    fun provideAppDatabase(appContext: Context): AppDatabase = Room.databaseBuilder(
-//        appContext, AppDatabase::class.java,
-//        AppDatabase.DB_NAME
-//    ).fallbackToDestructiveMigration().build()
-
-
+    @Binds
+    abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 }
