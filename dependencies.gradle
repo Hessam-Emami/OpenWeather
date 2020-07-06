@@ -115,7 +115,6 @@ ext {
 
     testLibraries = [
             junit4             : "junit:junit:$junit4Version",
-            mockito_dex        : "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion",
             hamcrest           : "org.hamcrest:hamcrest-all:$hamcrestVersion",
             mockito            : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoVersion",
             mockitoDexMaker    : "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion",

@@ -73,9 +73,6 @@ dependencies {
     implementation archComponentLibraries.lifecycleViewModel
     implementation archComponentLibraries.lifecyclerLiveData
     implementation archComponentLibraries.lifecycleRuntime
-    implementation archComponentLibraries.lifecycleRuntime
-    implementation archComponentLibraries.room
-    implementation archComponentLibraries.roomKtx
 
 
     coreLibraryDesugaring libraries.jdkDesugar
@@ -87,6 +84,7 @@ dependencies {
 
     //Test
     testImplementation testLibraries.junit4
+    testImplementation testLibraries.mockito
     androidTestImplementation testLibraries.androidXextJunit
     androidTestImplementation testLibraries.espresso_core
 }
