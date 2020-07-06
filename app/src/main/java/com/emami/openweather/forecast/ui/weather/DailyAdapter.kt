@@ -24,7 +24,6 @@ class DailyAdapter @Inject constructor() :
     override fun getLayoutId(): Int {
         return R.layout.item_recycler_weather_by_day
     }
-
     @SuppressLint("DefaultLocale")
     override fun bindView(): (item: UiDailyWeather, itemView: View, position: Int) -> Unit {
         return { item, itemView, position ->
@@ -33,8 +32,9 @@ class DailyAdapter @Inject constructor() :
                 if (lastSelectedItemPos == position) {
                     lastSelectedItemPos = -1
                 }
+                notifyItemChanged(lastSelectedItemPos)
                 lastSelectedItemPos = position
-                notifyDataSetChanged()
+                notifyItemChanged(position)
             }
             with(itemView) {
                 //Populate views
@@ -62,8 +62,8 @@ class DailyAdapter @Inject constructor() :
                         item.drawableResourceId
                     )
                 )
-                //Animate
                 if (lastSelectedItemPos == position) {
+                    //Can animate here
                     item_daily_tv_degree_range.makeGone()
                     item_daily_iv_weather_state.makeGone()
                 } else {
@@ -80,7 +80,7 @@ class DailyAdapter @Inject constructor() :
             oldItem: UiDailyWeather,
             newItem: UiDailyWeather
         ): Boolean =
-            oldItem === newItem
+            oldItem == newItem
 
         override fun areContentsTheSame(
             oldItem: UiDailyWeather,

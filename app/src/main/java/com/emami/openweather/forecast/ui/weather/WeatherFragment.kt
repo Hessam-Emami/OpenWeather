@@ -98,6 +98,8 @@ class WeatherFragment @Inject constructor(
             }
             currentSelectedCity = selectedCityLocation
             viewModel.fetchDailyForecast(selectedCityLocation.id)
+            hourlyAdapter.submitList(null)
+            dailyAdapter.submitList(null)
         }
     }
 

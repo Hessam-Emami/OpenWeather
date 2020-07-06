@@ -40,7 +40,7 @@ class HourlyAdapter @Inject constructor() :
             oldItem: UiHourlyWeather,
             newItem: UiHourlyWeather
         ): Boolean =
-            oldItem === newItem
+            oldItem == newItem
 
         override fun areContentsTheSame(
             oldItem: UiHourlyWeather,
