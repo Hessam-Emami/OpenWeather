@@ -95,7 +95,7 @@ class WeatherViewModel @Inject constructor(
     fun fetchDailyForecast(cityId: Int) {
         _loadingEvent.value = true
         viewModelScope.launch(Dispatchers.IO) {
-            when (val result = repo.fetch(cityId)) {
+            when (val result = repo.fetchWeatherForecast(cityId)) {
                 is DataResult.Success -> {
                     processHourlyData(result.data)
                     processDailyData(result.data)

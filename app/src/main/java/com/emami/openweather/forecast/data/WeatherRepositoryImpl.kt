@@ -18,12 +18,13 @@ class WeatherRepositoryImpl @Inject constructor(
 
     override fun getAvailableCities() = localDataSource.fetchAvailableCities()
 
-    override suspend fun fetch(cityId: Int): DataResult<OpenWeatherResponse> = invokeApi {
-        val city = getAvailableCities().find { it.id == cityId }
-        if (city == null) {
-            Timber.e("City not found")
-            throw RuntimeException("City not found, Data is being manipulated")
+    override suspend fun fetchWeatherForecast(cityId: Int): DataResult<OpenWeatherResponse> =
+        invokeApi {
+            val city = getAvailableCities().find { it.id == cityId }
+            if (city == null) {
+                Timber.e("City not found")
+                throw RuntimeException("City not found, Data is being manipulated")
+            }
+            weatherApi.getWeather(latitude = city.latitude, longitude = city.longitude)
         }
-        weatherApi.getWeather(latitude = city.latitude, longitude = city.longitude)
-    }
 }

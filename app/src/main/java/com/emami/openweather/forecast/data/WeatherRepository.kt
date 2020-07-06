@@ -7,5 +7,5 @@ import com.emami.openweather.forecast.data.network.dto.OpenWeatherResponse
 interface WeatherRepository {
     fun getAvailableCities(): List<CityLocation>
 
-    suspend fun fetch(cityId: Int): DataResult<OpenWeatherResponse>
+    suspend fun fetchWeatherForecast(cityId: Int): DataResult<OpenWeatherResponse>
 }
