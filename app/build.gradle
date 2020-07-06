@@ -79,7 +79,6 @@ dependencies {
 
     //Kapt
     kapt libraries.daggerCompiler
-    kapt archComponentLibraries.roomCompiler
 
 
     //Test
