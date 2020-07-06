@@ -1,6 +1,7 @@
 package com.emami.openweather.forecast.ui.weather
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -38,12 +39,14 @@ class WeatherFragment @Inject constructor(
     BaseFragment<WeatherViewModel>(WeatherViewModel::class.java, vf), WeatherView {
 
     private var currentSelectedCity: UiCityLocation? = null
+    private var handler: Handler? = null
 
     override fun getLayoutId(): Int = R.layout.fragment_weather
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerViews()
+        handler = Handler()
     }
 
     override fun observeLiveData() {
@@ -140,10 +143,11 @@ class WeatherFragment @Inject constructor(
         showHourlyData(isFirstItem)
     }
 
+
     override fun renderDailyList(list: List<UiDailyWeather>) {
         dailyAdapter.submitList(list)
         //Since we're only in portrait mode, I believe it's okay to use view handler and register a Runnable to it
-        weather_rv_weather_by_day.handler.post {
+        handler?.post {
             weather_rv_weather_by_day.findViewHolderForAdapterPosition(0)?.itemView?.callOnClick()
         }
     }
@@ -176,6 +180,11 @@ class WeatherFragment @Inject constructor(
                 R.drawable.bg_night_gradient
         }
         weather_cl_container.background = ContextCompat.getDrawable(requireContext(), backgroundId)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        handler = null
     }
 }
 
