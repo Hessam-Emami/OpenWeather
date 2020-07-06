@@ -56,6 +56,7 @@ dependencies {
     implementation libraries.appCompat
     implementation libraries.constraintLayout
     implementation libraries.legacySupport
+    implementation libraries.materialDesign
 
     implementation libraries.retrofit
     implementation libraries.gsonConverterFactory
@@ -68,6 +69,7 @@ dependencies {
     implementation libraries.gson
 
     //Jetpack
+    implementation archComponentLibraries.navFragment
     implementation archComponentLibraries.lifecycleViewModel
     implementation archComponentLibraries.lifecyclerLiveData
     implementation archComponentLibraries.lifecycleRuntime

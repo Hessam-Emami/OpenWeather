@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/item_spinner_weather_main_top_margin"
+    android:drawablePadding="4dp"
+    android:paddingStart="@dimen/item_spinner_weather_main_start_padding"
+    android:paddingTop="@dimen/item_spinner_weather_main_top_padding"
+    android:paddingEnd="@dimen/item_spinner_weather_main_end_padding"
+    android:paddingBottom="@dimen/item_spinner_weather_main_bottom_padding"
+    android:singleLine="true"
+    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+    app:drawableStartCompat="@drawable/ic_location_24"
+    tools:background="@color/dawnTopGradientColor"
+    tools:text="Tehran" />

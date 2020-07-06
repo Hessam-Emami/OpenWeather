@@ -1,15 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.emami.openweather.common.widget.VerticalSwipeToRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/weatherFrameLayout"
+    android:id="@+id/weather_swipe_to_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WeatherFragment">
+    android:background="@android:color/transparent"
+    tools:background="@drawable/bg_morning_gradient">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/weather_cl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".forecast.ui.weather.WeatherFragment">
 
-</FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/weather_rv_weather_by_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/weather_rv_hour_side_margin"
+            android:layout_marginTop="@dimen/weather_rv_hour_top_margin"
+            android:layout_marginEnd="@dimen/weather_rv_hour_side_margin"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weather_spinner_city_picker"
+            tools:itemCount="24"
+            tools:listitem="@layout/item_recycler_weather_by_hour" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/weather_tv_error_no_forecast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/error_no_hour_forecast"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/weather_rv_weather_by_hour"
+            app:layout_constraintEnd_toEndOf="@+id/weather_rv_weather_by_hour"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/weather_rv_weather_by_hour"
+            app:layout_constraintTop_toTopOf="@+id/weather_rv_weather_by_hour"
+            app:layout_constraintVertical_bias="0.562" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/weather_iv_current_weather_state"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/weather_iv_current_side_margin"
+            android:layout_marginEnd="@dimen/weather_iv_current_side_margin"
+            android:src="@drawable/ic_few_cloud_morning"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/weather_tv_current_degree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_current_weather"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
+            app:layout_constraintBottom_toTopOf="@+id/weather_tv_current_range_degree"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/weather_tv_current_range_degree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_weather_range"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="@color/secondaryTextColor"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/weather_tv_current_degree"
+            app:layout_constraintTop_toBottomOf="@+id/weather_tv_current_degree" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/weather_spinner_city_picker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/weather_spinner_side_margin"
+            android:layout_marginEnd="@dimen/weather_spinner_side_margin"
+            android:background="@drawable/bg_spinner_city"
+            android:dropDownVerticalOffset="@dimen/weather_spinner_vertical_offset"
+            android:overlapAnchor="false"
+            android:paddingStart="@dimen/weather_spinner_start_padding"
+            android:popupBackground="@drawable/bg_spinner_city"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/weather_tv_current_degree"
+            app:layout_constraintTop_toBottomOf="@+id/weather_tv_current_range_degree"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/weather_rv_weather_by_day"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/weather_rv_top_margin"
+            android:layout_marginBottom="@dimen/weather_rv_bottom_margin"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/weather_rv_weather_by_hour"
+            app:layout_constraintStart_toStartOf="@+id/weather_rv_weather_by_hour"
+            app:layout_constraintTop_toBottomOf="@+id/weather_rv_weather_by_hour"
+            tools:itemCount="7"
+            tools:listitem="@layout/item_recycler_weather_by_day" />
+
+        <ProgressBar
+            android:id="@+id/weather_pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.emami.openweather.common.widget.VerticalSwipeToRefreshLayout>

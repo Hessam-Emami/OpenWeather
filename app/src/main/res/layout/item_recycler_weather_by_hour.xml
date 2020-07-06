@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/item_recycler_weather_hour_end_margin"
+    android:background="@android:color/transparent"
+    tools:background="@drawable/bg_morning_gradient">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/item_hourly_iv_weather_state"
+        android:layout_width="@dimen/item_recycler_weather_hour_image_size"
+        android:layout_height="@dimen/item_recycler_weather_hour_image_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_clear_sky_dawn" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_hourly_tv_degree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_hourly_iv_weather_state"
+        tools:text="24°" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_hourly_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="@color/secondaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_hourly_tv_degree"
+        tools:text="11PM" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
