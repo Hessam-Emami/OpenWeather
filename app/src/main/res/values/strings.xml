@@ -9,4 +9,6 @@
     <string name="default_current_weather">23°</string>
     <string name="default_weather_range">23°/19°</string>
     <string name="error_no_hour_forecast">48 hour forecast is only available from current day</string>
+    <string name="error_no_city_selected">Please select a city first!</string>
+    <string name="already_up_to_date">Already up to date.</string>
 </resources>
