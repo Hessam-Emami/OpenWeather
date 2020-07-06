@@ -18,6 +18,7 @@ import com.emami.openweather.forecast.ui.model.UiHourlyWeather
 import com.emami.openweather.forecast.ui.model.UiMinMaxTemperature
 import com.emami.openweather.forecast.util.WeatherStateChecker
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -92,9 +93,12 @@ class WeatherViewModel @Inject constructor(
         )
     }
 
+    private var fetchDataJob: Job? = null
     fun fetchDailyForecast(cityId: Int) {
+        //cancel the ongoing coroutines, used when multiple calls are shot from the view
+        fetchDataJob?.cancel()
         _loadingEvent.value = true
-        viewModelScope.launch(Dispatchers.IO) {
+        fetchDataJob = viewModelScope.launch(Dispatchers.IO) {
             when (val result = repo.fetchWeatherForecast(cityId)) {
                 is DataResult.Success -> {
                     processHourlyData(result.data)
