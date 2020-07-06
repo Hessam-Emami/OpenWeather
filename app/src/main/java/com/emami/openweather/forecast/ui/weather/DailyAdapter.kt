@@ -24,6 +24,7 @@ class DailyAdapter @Inject constructor() :
     override fun getLayoutId(): Int {
         return R.layout.item_recycler_weather_by_day
     }
+
     @SuppressLint("DefaultLocale")
     override fun bindView(): (item: UiDailyWeather, itemView: View, position: Int) -> Unit {
         return { item, itemView, position ->

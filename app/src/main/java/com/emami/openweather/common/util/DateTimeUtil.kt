@@ -21,7 +21,7 @@ object DateTimeUtil {
         return when (hourOfDay) {
             in 0..6 -> DayTimeState.DAWN
             in 7..11 -> DayTimeState.MORNING
-            in 12..15 -> DayTimeState.NOON
+            in 12..16 -> DayTimeState.NOON
             in 17..19 -> DayTimeState.EVENING
             in 20..23 -> DayTimeState.NIGHT
             else -> DayTimeState.MORNING
